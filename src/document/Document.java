@@ -35,7 +35,7 @@ public abstract class Document {
    * pattern
    */
   protected List<String> getTokens(String pattern) {
-    ArrayList<String> tokens = new ArrayList<String>();
+    ArrayList<String> tokens = new ArrayList<>();
     Pattern tokSplitter = Pattern.compile(pattern);
     Matcher m = tokSplitter.matcher(text);
 
@@ -53,30 +53,26 @@ public abstract class Document {
   // here.  The reason we put countSyllables here because we'll use it again
   // next week when we implement the EfficientDocument class.
   protected int countSyllables(String word) {
-    // TODO: Implement this method so that you can call it from the
-    // getNumSyllables method in BasicDocument (module 1) and
-    // EfficientDocument (module 2).
     String temp = text;
     text = word;
-    int counter = 0;
-
+    int count;
     if (word.charAt(word.length() - 1) == 'e') {
       List<String> syllables = getTokens("[aeiouyAEIOUY]+");
       text = temp;
-
       if (syllables.size() == 1) {
-        counter = syllables.size();
+        count = syllables.size();
       } else if ((syllables.get(syllables.size() - 1)).charAt(0) == 'e') {
-        counter = syllables.size() - 1;
+        count = syllables.size() - 1;
+      } else {
+        count = syllables.size();
       }
-
     } else {
       List<String> syllables = getTokens("[aeiouyAEIOUY]+");
       text = temp;
-      counter = syllables.size();
+      count = syllables.size();
     }
-    return counter;
 
+    return count;
   }
 
   /**
@@ -146,8 +142,13 @@ public abstract class Document {
    * return the Flesch readability score of this document
    */
   public double getFleschScore() {
-    // TODO: Implement this method
-    return 0.0;
+    final double fleschConstant01 = 206.835;
+    final double fleschConstant02 = 1.015;
+    final double fleschConstant03 = 84.6;
+    final double numWords = getNumWords();
+    final double numSentences = getNumSentences();
+    final double numSyllables = getNumSyllables();
+    return fleschConstant01 - (fleschConstant02 * (numWords / numSentences)) - (fleschConstant03 * (numSyllables / numWords));
   }
 
 
