@@ -56,6 +56,16 @@ public class BasicDocument extends Document {
    */
   @Override
   public int getNumSyllables() {
+    /* Coursera solution using regex's.  Uncoment here to run it*/
+		/*
+		List<String> tokens = getTokens("[aeiouyAEIOUY]+");
+		List<String> loneEs = getTokens("[^aeiouyAEIOUY]+[eE]\\b");
+		List<String> singleEs = getTokens("\\b[^aeiouyAEIOUY]*[eE]\\b");
+
+
+		return tokens.size() - (loneEs.size() - singleEs.size());
+		*/
+
     final List<String> words = getTokens("[a-zA-Z]+");
     int count = 0;
     for (String word : words) {

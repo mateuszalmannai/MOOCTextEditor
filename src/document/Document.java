@@ -75,6 +75,27 @@ public abstract class Document {
     return count;
   }
 
+  protected static int courseraCountSyllables(String word) {
+    //System.out.print("Counting syllables in " + word + "...");
+    int numSyllables = 0;
+    boolean newSyllable = true;
+    String vowels = "aeiouy";
+    char[] cArray = word.toCharArray();
+    for (int i = 0; i < cArray.length; i++) {
+      if (i == cArray.length - 1 && cArray[i] == 'e' && newSyllable && numSyllables > 0) {
+        numSyllables--;
+      }
+      if (newSyllable && vowels.indexOf(Character.toLowerCase(cArray[i])) >= 0) {
+        newSyllable = false;
+        numSyllables++;
+      } else if (vowels.indexOf(Character.toLowerCase(cArray[i])) < 0) {
+        newSyllable = true;
+      }
+    }
+    //System.out.println( "found " + numSyllables);
+    return numSyllables;
+  }
+
   /**
    * A method for testing
    *
