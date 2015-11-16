@@ -1,5 +1,7 @@
 package application;
 
+import textgen.MarkovTextGeneratorLoL;
+
 import java.util.Random;
 
 
@@ -17,7 +19,7 @@ public class LaunchClass {
 	}
 	
 	public textgen.MarkovTextGenerator getMTG() {
-		return new textgen.MarkovTextGeneratorLoL(new Random());
+		return new MarkovTextGeneratorLoL(new Random());
 	}
 	
 	public spelling.WordPath getWordPath() {

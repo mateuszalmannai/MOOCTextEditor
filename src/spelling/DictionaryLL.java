@@ -3,7 +3,7 @@ package spelling;
 import java.util.LinkedList;
 
 /**
- * A class that implements the Dictionary interface using a LinkedList
+ * A class that implements the Dictionary interface using a doublyLinkedList
  *
  */
 public class DictionaryLL implements Dictionary 
